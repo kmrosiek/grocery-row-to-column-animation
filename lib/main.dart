@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/presentation/common/app_theme.dart';
+import 'package:grocery/presentation/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Grocery app',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Container(),
+      theme: AppTheme.bright(context),
+      home: const Home(),
     );
   }
 }
