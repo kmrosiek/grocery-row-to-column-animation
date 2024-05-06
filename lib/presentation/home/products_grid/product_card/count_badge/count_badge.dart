@@ -1,6 +1,5 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:grocery/presentation/common/app_colors.dart';
 import 'package:grocery/presentation/home/products_grid/product_card/count_badge/count_text.dart';
 import 'package:grocery/presentation/home/products_grid/product_card/count_badge/opened_badge.dart';

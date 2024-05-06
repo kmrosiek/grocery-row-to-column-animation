@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/presentation/common/assets.dart';
+import 'package:grocery/presentation/common/common_product/price_text.dart';
 import 'package:grocery/presentation/home/products_grid/product_card/count_badge/count_badge.dart';
 import 'package:grocery/presentation/home/products_grid/product_card/product_heart.dart';
 
@@ -16,14 +17,19 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(child: Center(child: Image.asset(Assets.cabbage))),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Cabbage'),
-                      Text('Fruits'),
-                      Text('\$20.00/kg'),
+                      Text('Cabbage',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      Text('Fruits',
+                          style: Theme.of(context).textTheme.bodySmall),
+                      const PriceText(amount: '20.00'),
                     ]),
               )
             ],
