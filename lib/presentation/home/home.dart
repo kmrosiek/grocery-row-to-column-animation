@@ -42,6 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: AbsorbPointer(
                         absorbing: _cartExpanded,
                         child: const ProductsGrid()))),
+            const SizedBox(height: 100),
           ]),
           GestureDetector(
               onTap: _cartExpanded
