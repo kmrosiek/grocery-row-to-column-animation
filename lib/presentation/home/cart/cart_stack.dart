@@ -96,7 +96,7 @@ class _CartStackState extends State<CartStack>
       padding: const EdgeInsets.all(Dim.padding),
       child: Stack(
         children: [
-          const Positioned(child: CartTitle()),
+          const Positioned(top: 10, child: CartTitle()),
           ...List.generate(numberOfProduts, (index) => index).map((int index) {
             return AnimatedPositioned(
               duration: Duration(
