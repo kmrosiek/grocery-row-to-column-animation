@@ -19,16 +19,16 @@ class OpenedBadge extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(width: 20),
+          const SizedBox(width: 10),
           CountModifier(
             icon: const Icon(Icons.remove),
             onPressed: onRemove,
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 2),
           CountText(text: count),
-          const SizedBox(width: 20),
+          const SizedBox(width: 2),
           CountModifier(icon: const Icon(Icons.add), onPressed: onAdd),
-          const SizedBox(width: 20),
+          const SizedBox(width: 10),
         ],
       ),
     );

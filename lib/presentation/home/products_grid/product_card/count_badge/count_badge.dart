@@ -43,7 +43,6 @@ class _CountBadgeState extends State<CountBadge> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         curve: Curves.easeInOutCirc,
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
         width: _isOpen ? 130 : 30,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20.0)),

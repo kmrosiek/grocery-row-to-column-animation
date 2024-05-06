@@ -6,9 +6,13 @@ class CountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
-        style:
-            const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center);
+    return Container(
+      width: 22,
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Text(text,
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center),
+    );
   }
 }

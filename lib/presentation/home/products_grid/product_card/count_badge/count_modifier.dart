@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/presentation/common/app_colors.dart';
 
 class CountModifier extends StatelessWidget {
   const CountModifier({super.key, required this.icon, required this.onPressed});
@@ -10,9 +11,13 @@ class CountModifier extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        decoration:
-            const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-        child: icon,
+        color: AppColors.primaryColor.withAlpha(0),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+          decoration:
+              const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+          child: icon,
+        ),
       ),
     );
   }
