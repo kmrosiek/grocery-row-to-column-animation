@@ -6,30 +6,33 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Good Morning!",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            Text(
-              "Caesar Rincon",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.black54),
-            )
-          ],
-        ),
-        const CircleAvatar(
-          backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage(Assets.profilePicture),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Good Morning!",
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              Text(
+                "Caesar Rincon",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(color: Colors.black54),
+              )
+            ],
+          ),
+          const CircleAvatar(
+            backgroundColor: Colors.transparent,
+            backgroundImage: AssetImage(Assets.profilePicture),
+          )
+        ],
+      ),
     );
   }
 }

@@ -14,6 +14,7 @@ class AppTheme {
             padding: const EdgeInsets.all(Dim.padding * 0.75),
             shape: const StadiumBorder(),
             backgroundColor: AppColors.primaryColor,
+            foregroundColor: Colors.white,
           ),
         ),
       );
