@@ -1,7 +1,7 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grocery/application/order_cubit.dart';
+import 'package:grocery/application/order_cubit/order_cubit.dart';
 import 'package:grocery/domain/product.dart';
 import 'package:grocery/presentation/common/app_colors.dart';
 import 'package:grocery/presentation/home/products_grid/product_card/count_badge/count_text.dart';

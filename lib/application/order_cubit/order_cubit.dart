@@ -48,14 +48,4 @@ class OrderCubit extends Cubit<OrderState> {
 
     emit(state.copyWith(orderItems: updatedItems));
   }
-
-  //Stream<List<OrderItem>> watchOrderItems() {
-  // Your implementation to fetch and listen to a stream of order items. Assuming you have a repository method.
-  // For example:
-  // _repository.watchOrderItems().listen(
-  //   (newItems) {
-  //     emit(state.copyWith(orderItems: newItems));
-  //   },
-  // );
-  //}
 }
