@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/application/order_cubit.dart';
 import 'package:grocery/presentation/common/dim.dart';
 import 'package:grocery/presentation/home/cart/widgets/cart_title.dart';
 import 'package:grocery/presentation/home/cart/widgets/product_circle.dart';
@@ -90,59 +92,66 @@ class _CartStackState extends State<CartStack>
     const double baseStackHeight = 80;
     const double stackSize =
         baseStackHeight + numberOfProduts * (verticalItemsSpacing);
-    return Container(
-      width: screenWidth,
-      height: stackSize,
-      padding: const EdgeInsets.all(Dim.padding),
-      child: Stack(
-        children: [
-          const Positioned(top: 10, child: CartTitle()),
-          ...List.generate(numberOfProduts, (index) => index).map((int index) {
-            return AnimatedPositioned(
-              duration: Duration(
-                  milliseconds: 300 + index * singleItemAnimationDelay),
-              curve: Curves.fastOutSlowIn,
-              left: _leftPosition +
-                  (_isItRow ? index * horizontalItemsSpacing : 0.0),
-              top: _topPosition +
-                  (!_isItRow ? index * verticalItemsSpacing : 0.0),
-              child: Visibility(
-                visible: !(_isItRow && index > 3),
-                child: Row(
-                  children: [
-                    const ProductCircle(),
-                    if (!_isItRow)
-                      FadeTransition(
-                        opacity: _fadeInAnimation,
-                        child: SizedBox(
-                          width: screenWidth - 100,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const SizedBox(width: 12),
-                              const Flexible(
-                                fit: FlexFit.tight,
-                                child: Text('Cabbage', maxLines: 2),
+    return BlocBuilder<OrderCubit, OrderState>(
+      builder: (context, state) {
+        print(state.orderItems.length);
+        return Container(
+          width: screenWidth,
+          height: stackSize,
+          padding: const EdgeInsets.all(Dim.padding),
+          child: Stack(
+            children: [
+              const Positioned(top: 10, child: CartTitle()),
+              ...List.generate(numberOfProduts, (index) => index)
+                  .map((int index) {
+                return AnimatedPositioned(
+                  duration: Duration(
+                      milliseconds: 300 + index * singleItemAnimationDelay),
+                  curve: Curves.fastOutSlowIn,
+                  left: _leftPosition +
+                      (_isItRow ? index * horizontalItemsSpacing : 0.0),
+                  top: _topPosition +
+                      (!_isItRow ? index * verticalItemsSpacing : 0.0),
+                  child: Visibility(
+                    visible: !(_isItRow && index > 3),
+                    child: Row(
+                      children: [
+                        const ProductCircle(),
+                        if (!_isItRow)
+                          FadeTransition(
+                            opacity: _fadeInAnimation,
+                            child: SizedBox(
+                              width: screenWidth - 100,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const SizedBox(width: 12),
+                                  const Flexible(
+                                    fit: FlexFit.tight,
+                                    child: Text('Cabbage', maxLines: 2),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Text('\$20/kg x $index'),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text('\$20/kg x $index'),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            );
-          }),
-          const Positioned(
-              right: 0, child: ProductsCount(count: numberOfProduts)),
-        ],
-      ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+              Positioned(
+                  right: 0,
+                  child: ProductsCount(count: state.orderItems.length)),
+            ],
+          ),
+        );
+      },
     );
   }
 }
