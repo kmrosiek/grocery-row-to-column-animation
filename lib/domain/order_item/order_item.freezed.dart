@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrderItem {
-  Product get product => throw _privateConstructorUsedError;
+  ProductId get productId => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +29,7 @@ abstract class $OrderItemCopyWith<$Res> {
   factory $OrderItemCopyWith(OrderItem value, $Res Function(OrderItem) then) =
       _$OrderItemCopyWithImpl<$Res, OrderItem>;
   @useResult
-  $Res call({Product product, int count});
+  $Res call({ProductId productId, int count});
 }
 
 /// @nodoc
@@ -45,14 +45,14 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
+    Object? productId = null,
     Object? count = null,
   }) {
     return _then(_value.copyWith(
-      product: null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
+      productId: null == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as ProductId,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -69,7 +69,7 @@ abstract class _$$OrderItemImplCopyWith<$Res>
       __$$OrderItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Product product, int count});
+  $Res call({ProductId productId, int count});
 }
 
 /// @nodoc
@@ -83,14 +83,14 @@ class __$$OrderItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
+    Object? productId = null,
     Object? count = null,
   }) {
     return _then(_$OrderItemImpl(
-      product: null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
+      productId: null == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as ProductId,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -102,17 +102,17 @@ class __$$OrderItemImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OrderItemImpl extends _OrderItem {
-  const _$OrderItemImpl({required this.product, required this.count})
+  const _$OrderItemImpl({required this.productId, required this.count})
       : super._();
 
   @override
-  final Product product;
+  final ProductId productId;
   @override
   final int count;
 
   @override
   String toString() {
-    return 'OrderItem(product: $product, count: $count)';
+    return 'OrderItem(productId: $productId, count: $count)';
   }
 
   @override
@@ -120,12 +120,13 @@ class _$OrderItemImpl extends _OrderItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrderItemImpl &&
-            (identical(other.product, product) || other.product == product) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
             (identical(other.count, count) || other.count == count));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product, count);
+  int get hashCode => Object.hash(runtimeType, productId, count);
 
   @JsonKey(ignore: true)
   @override
@@ -136,12 +137,12 @@ class _$OrderItemImpl extends _OrderItem {
 
 abstract class _OrderItem extends OrderItem {
   const factory _OrderItem(
-      {required final Product product,
+      {required final ProductId productId,
       required final int count}) = _$OrderItemImpl;
   const _OrderItem._() : super._();
 
   @override
-  Product get product;
+  ProductId get productId;
   @override
   int get count;
   @override

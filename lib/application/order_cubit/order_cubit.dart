@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:grocery/domain/order_item/order_item.dart';
-import 'package:grocery/domain/product.dart';
+import 'package:grocery/domain/product/product_id.dart';
 import 'package:injectable/injectable.dart';
 
 part 'order_cubit.freezed.dart';
@@ -14,9 +14,9 @@ part 'order_state.dart';
 class OrderCubit extends Cubit<OrderState> {
   OrderCubit() : super(OrderState.initial());
 
-  void addProduct(Product product, int count) {
+  void addProduct(ProductId productId) {
     int existingItemIndex =
-        state.orderItems.indexWhere((item) => item.product.id == product.id);
+        state.orderItems.indexWhere((item) => item.productId == productId);
 
     List<OrderItem> updatedItems = List<OrderItem>.from(state.orderItems);
 
@@ -24,20 +24,20 @@ class OrderCubit extends Cubit<OrderState> {
       final item = updatedItems[existingItemIndex];
       updatedItems[existingItemIndex] = item.increment();
     } else {
-      updatedItems.add(OrderItem(product: product, count: count));
+      updatedItems.add(OrderItem(productId: productId, count: 1));
     }
 
     emit(state.copyWith(orderItems: updatedItems));
   }
 
-  void removeProduct(Product product, int count) {
+  void removeProduct(ProductId productId) {
     int existingItemIndex =
-        state.orderItems.indexWhere((item) => item.product.id == product.id);
+        state.orderItems.indexWhere((item) => item.productId == productId);
 
     List<OrderItem> updatedItems = List<OrderItem>.from(state.orderItems);
 
     if (existingItemIndex == -1) {
-      log('Tried to remove ${product.id}, but item could not be found in the list.');
+      log('Tried to remove $productId, but item could not be found in the list.');
       return;
     }
 

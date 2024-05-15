@@ -3,7 +3,7 @@ import 'package:grocery/presentation/common/app_colors.dart';
 
 class PriceText extends StatelessWidget {
   const PriceText({super.key, required this.amount});
-  final String amount;
+  final double amount;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class PriceText extends StatelessWidget {
             fontWeight: FontWeight.w600, color: AppColors.primaryColor),
         children: [
           TextSpan(
-            text: amount,
+            text: amount.toStringAsFixed(2),
             style: const TextStyle(color: Colors.black),
           ),
           const TextSpan(

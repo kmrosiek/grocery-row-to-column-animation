@@ -55,9 +55,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 child: DraggableCartSheet(
                   cartExpanded: _cartExpanded,
                   updateExpanded: (bool expanded) {
-                    setState(() {
-                      _cartExpanded = expanded;
-                    });
+                    setState(() => _cartExpanded = expanded);
                   },
                 ))
           ]),

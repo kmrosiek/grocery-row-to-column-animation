@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/application/order_cubit/order_cubit.dart';
 import 'package:grocery/presentation/common/app_colors.dart';
 import 'package:grocery/presentation/home/cart/cart_stack.dart';
 
@@ -20,38 +22,17 @@ class _DraggableCartSheetState extends State<DraggableCartSheet>
   double? _minScrollHeight;
   double? _maxScrollHeight;
 
-  final dragController = DraggableScrollableController();
+  final _dragController = DraggableScrollableController();
 
   double get _getMinScrollHeight => _minScrollHeight ?? _defaultMinScrollHeight;
   double get _getMaxScrollHeight => _maxScrollHeight ?? _defaultMaxScrollHeight;
 
   void animateDragOnTap(double height) {
-    dragController.animateTo(
+    _dragController.animateTo(
       height,
       duration: const Duration(milliseconds: 500),
       curve: Curves.fastEaseInToSlowEaseOut,
     );
-  }
-
-  /*void toggleDragSheet({required double minScrollHeight}) {
-    if (dragController.size == maxScrollHeight) {
-      animateDragOnTap(minScrollHeight);
-    } else {
-      animateDragOnTap(maxScrollHeight);
-    }
-  }*/
-
-  @override
-  void initState() {
-    super.initState();
-    /*dragController.addListener(() {
-      final newSize = dragController.size;
-      if (newSize <= 0.15 + 0.05) {
-        //setState(() => _cartExpanded = false);
-      } else if (newSize >= maxScrollHeight - 0.05) {
-        //setState(() => _cartExpanded = true);
-      }
-    });*/
   }
 
   @override
@@ -60,14 +41,14 @@ class _DraggableCartSheetState extends State<DraggableCartSheet>
     final screenHeight = MediaQuery.of(context).size.height;
     _minScrollHeight ??= 100 / screenHeight;
     const double baseStackHeight = 80;
-    const int noOfProducts = 5;
+    final int noOfProducts = context.read<OrderCubit>().state.orderItems.length;
     const double verticalItemsSpacing = 70.0;
-    const double stackSize =
+    final double stackSize =
         baseStackHeight + noOfProducts * (verticalItemsSpacing) + 00;
-    _maxScrollHeight ??= (80 + stackSize) / screenHeight;
+    _maxScrollHeight = (80 + stackSize) / screenHeight;
 
-    dragController.addListener(() {
-      final newSize = dragController.size;
+    _dragController.addListener(() {
+      final newSize = _dragController.size;
       if (newSize <= _getMinScrollHeight + 0.01) {
         widget.updateExpanded(false);
       } else if (newSize >= _getMaxScrollHeight - 0.01) {
@@ -78,7 +59,7 @@ class _DraggableCartSheetState extends State<DraggableCartSheet>
 
   @override
   void dispose() {
-    dragController.dispose();
+    _dragController.dispose();
     super.dispose();
   }
 
@@ -104,27 +85,32 @@ class _DraggableCartSheetState extends State<DraggableCartSheet>
 
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      controller: dragController,
-      initialChildSize: _getMinScrollHeight,
-      minChildSize: _getMinScrollHeight,
-      maxChildSize: _getMaxScrollHeight,
-      snap: true,
-      snapAnimationDuration: const Duration(milliseconds: 150),
-      builder: (BuildContext context, ScrollController scrollController) {
-        return Container(
-          decoration: const BoxDecoration(
-              color: AppColors.greyBackground,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(18.0))),
-          child: SingleChildScrollView(
-            controller: scrollController,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 80.0),
-              child: CartStack(expanded: widget.cartExpanded),
+    final noOfProducts = context.watch<OrderCubit>().state.orderItems.length;
+    return IgnorePointer(
+      ignoring: noOfProducts == 0,
+      child: DraggableScrollableSheet(
+        controller: _dragController,
+        initialChildSize: _getMinScrollHeight,
+        minChildSize: _getMinScrollHeight,
+        maxChildSize: _getMaxScrollHeight,
+        snap: true,
+        snapAnimationDuration: const Duration(milliseconds: 150),
+        builder: (BuildContext context, ScrollController scrollController) {
+          return Container(
+            decoration: const BoxDecoration(
+                color: AppColors.greyBackground,
+                borderRadius:
+                    BorderRadius.vertical(top: Radius.circular(18.0))),
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
+                child: CartStack(expanded: widget.cartExpanded),
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
