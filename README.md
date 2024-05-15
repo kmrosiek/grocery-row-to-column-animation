@@ -16,8 +16,9 @@ This project utilizes several packages to enhance functionality and improve deve
 
 ## Preview
 
-![Grocery animation app](readme_assets/grocery_preview.gif)
+![Grocery animation app](readme_assets/grocery_preview.gif) . 
 
 ## Project File Structure
-Project file structure includes 3 layers: Presentation, Application and Domain.
+Project file structure includes 3 layers: Presentation, Application and Domain.  
+
 <img src="readme_assets/file_structure.png" alt="TheFlutterWay" width="200">
