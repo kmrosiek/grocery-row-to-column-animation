@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Grocery app',
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.bright(context),
       home: BlocProvider(
         create: (context) =>
