@@ -28,6 +28,7 @@ class ProductCircle extends StatelessWidget {
           decoration:
               const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
           child: badges.Badge(
+            stackFit: StackFit.expand,
             showBadge: count > 1 && isItRowLayout,
             position: badges.BadgePosition.bottomEnd(bottom: -8, end: -5),
             badgeContent: Text(count.toString(),
