@@ -2,7 +2,6 @@
 
 This project demonstrates how to animate widgets from a row layout to a column layout. The design is inspired by [TheFlutterWay](https://www.youtube.com/@TheFlutterWay).
 
-![TheFlutterWay](https://www.youtube.com/@TheFlutterWay)
 ## Packages Used 📦
 
 This project utilizes several packages to enhance functionality and improve development efficiency. Below is a list of the packages used along with a brief description of each:
@@ -17,9 +16,8 @@ This project utilizes several packages to enhance functionality and improve deve
 
 ## Preview
 
-![Preview of the Flutter application connecting to Arduino](readme_assets/grocery_preview.gif)
+![Grocery animation app](readme_assets/grocery_preview.gif)
 
 ## Project File Structure
-
-You can download and view the project file structure:
-![File Structure](readme_assets/file_structure.png).
+Project file structure includes 3 layers: Presentation, Application and Domain.
+<img src="readme_assets/file_structure.png" alt="TheFlutterWay" width="200">
